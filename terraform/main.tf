@@ -1,5 +1,5 @@
 provider "azurerm" {
-    subscription_id = "7a8c32c6-f593-43cd-ab54-99105fd2cc8b"
+  subscription_id = "7a8c32c6-f593-43cd-ab54-99105fd2cc8b"
   features {
     key_vault {
       purge_soft_delete_on_destroy    = true
