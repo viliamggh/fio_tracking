@@ -3,5 +3,5 @@ variable "environment_tag" {
 }
 
 variable "service_shortcut" {
-    default = "fintrack"
+  default = "fintrack"
 }

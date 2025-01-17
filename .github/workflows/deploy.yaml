@@ -20,8 +20,8 @@ env:
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
 
 jobs:
-  terraform-deploy:
-    name: 'Terraform Deploy'
+  infra-deploy:
+    name: 'Az Infra Deploy'
     runs-on: ubuntu-latest
     defaults:
       run:
