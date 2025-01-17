@@ -15,12 +15,12 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "rg" {
-  name     = "finance-tracker"
+  name     = "rg-${var.service_shortcut}-${var.environment_tag}"
   location = "West Europe"
 }
 
 resource "azurerm_key_vault" "kv" {
-  name                        = "kv-vg"
+  name                        = "kv-${var.service_shortcut}-${var.environment_tag}"
   location                    = azurerm_resource_group.rg.location
   resource_group_name         = azurerm_resource_group.rg.name
   enabled_for_disk_encryption = true
@@ -30,4 +30,12 @@ resource "azurerm_key_vault" "kv" {
   enable_rbac_authorization   = true
 
   sku_name = "standard"
+}
+
+resource "azurerm_storage_account" "sa" {
+  name                     = "sa${var.service_shortcut}${var.environment_tag}"
+  location                    = azurerm_resource_group.rg.location
+  resource_group_name         = azurerm_resource_group.rg.name
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
 }
