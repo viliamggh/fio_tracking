@@ -48,7 +48,7 @@ jobs:
         scope: subscription
         region: ${{ env.REGION }}
         template: main.bicep
-        parameters: tfRgName=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }} tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }}  tfCntrName=${{ env.CNTR_TF_NAME }}
+        parameters: tfRgName=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }} tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }} tfCntrName=${{ env.CNTR_TF_NAME }} region=${{ env.REGION }} 
 
     - uses: cschleiden/replace-tokens@v1.2
       with:
