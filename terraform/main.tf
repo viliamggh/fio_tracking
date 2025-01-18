@@ -86,3 +86,8 @@ resource "azurerm_linux_function_app" "functions" {
   site_config {}
 
 }
+
+import {
+  to = azurerm_resource_group.rg
+  id = "/subscriptions7a8c32c6-f593-43cd-ab54-99105fd2cc8bresourceGroups/rg-fintrack-dev"
+}
