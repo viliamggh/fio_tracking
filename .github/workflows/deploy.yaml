@@ -52,7 +52,7 @@ jobs:
 
     - run: |
         echo "RG_TF_NAME=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
-        echo "ST_TF_NAME=tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
+        echo "ST_TF_NAME=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
 
     - uses: cschleiden/replace-tokens@v1.2
       with:
