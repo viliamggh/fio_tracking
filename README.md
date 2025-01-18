@@ -7,4 +7,3 @@ Download transaction data via FIO internet bakning API.
 - [ ] implement golang script into azure function
     - [ ] manual trigger
     - [ ] scheduled trigger
-
