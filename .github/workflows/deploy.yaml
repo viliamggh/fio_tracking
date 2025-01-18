@@ -23,7 +23,7 @@ env:
   ST_TF_PREFIX: "sttrffintrack"
   CNTR_TF_NAME: "ctrf"
   ENVIRONMENT_TAG: "dev"
-  REGION: "weeu"
+  REGION: "westeurope"
 
 jobs:
   infra-deploy:
