@@ -66,6 +66,8 @@ resource "azurerm_linux_function_app" "functions" {
   storage_account_access_key = azurerm_storage_account.sa.primary_access_key
   https_only                 = true
 
+
+
   app_settings = {
     FUNCTIONS_WORKER_RUNTIME = "custom"
     # SPAUTH_SITEURL           = var.sharepoint_siteurl
