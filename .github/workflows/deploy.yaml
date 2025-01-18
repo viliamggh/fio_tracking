@@ -50,6 +50,10 @@ jobs:
         template: main.bicep
         parameters: tfRgName=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }} tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }} tfCntrName=${{ env.CNTR_TF_NAME }} region=${{ env.REGION }} 
 
+    - run: |
+        echo "RG_TF_NAME=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
+        echo "ST_TF_NAME=tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
+
     - uses: cschleiden/replace-tokens@v1.2
       with:
         tokenPrefix: '__'
