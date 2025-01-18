@@ -91,3 +91,14 @@ import {
   to = azurerm_resource_group.rg
   id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev"
 }
+
+import {
+  to = azurerm_key_vault.kv
+  id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev/providers/Microsoft.KeyVault/vaults/kv-fintrack-dev"
+}
+
+import {
+  to = azurerm_storage_account.sa
+  id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev/providers/Microsoft.Storage/storageAccounts/safintrackdev"
+}
+
