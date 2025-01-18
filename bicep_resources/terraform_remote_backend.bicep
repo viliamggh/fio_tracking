@@ -24,6 +24,7 @@ resource terraformStorageAcc 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
+
 resource tfContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-09-01' = {
   name: '${tfSaName}/default/${tfCntrName}'
   properties:{
