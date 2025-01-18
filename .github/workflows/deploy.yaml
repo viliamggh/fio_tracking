@@ -19,10 +19,11 @@ env:
   ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
 
-  RG_TF_NAME: "rg-trf-fintrack"
-  ST_TF_NAME: "sttrffintrack"
+  RG_TF_PREFIX: "rg-trf-fintrack"
+  ST_TF_PREFIX: "sttrffintrack"
   CNTR_TF_NAME: "ctrf"
   ENVIRONMENT_TAG: "dev"
+  REGION: "weeu"
 
 jobs:
   infra-deploy:
@@ -41,8 +42,8 @@ jobs:
       with:
         scope: subscription
         region: ${{ env.REGION }}
-        template: ./main.bicep
-        parameters: tfSaName=${{ env.ST_TF_NAME }} tfCntrName=${{ env.CNTR_TF_NAME }} environmentTag=${{ env.ENVIRONMENT_TAG }} 
+        template: ../main.bicep
+        parameters: tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }}  tfCntrName=${{ env.CNTR_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }}  environmentTag=${{ env.ENVIRONMENT_TAG }} 
 
     - uses: cschleiden/replace-tokens@v1.2
       with:
