@@ -12,7 +12,7 @@ param stKind string = 'StorageV2'
 resource terraformStorageAcc 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: tfSaName
   kind: stKind
-  location: resourceGroup().name
+  location: resourceGroup().location
   properties:{
     minimumTlsVersion: minTlsVersion
     isHnsEnabled: true
