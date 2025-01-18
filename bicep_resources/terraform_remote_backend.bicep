@@ -30,3 +30,4 @@ resource tfContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@
     publicAccess:'None'
   }
 }
+
