@@ -19,6 +19,11 @@ env:
   ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
 
+  RG_TF_NAME: "rg-trf-fintrack"
+  ST_TF_NAME: "sttrffintrack"
+  CNTR_TF_NAME: "ctrf"
+  ENVIRONMENT_TAG: "dev"
+
 jobs:
   infra-deploy:
     name: 'Az Infra Deploy'
@@ -32,6 +37,19 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - uses: azure/arm-deploy@v1
+      with:
+        scope: subscription
+        region: ${{ env.REGION }}
+        template: ./main.bicep
+        parameters: tfSaName=${{ env.ST_TF_NAME }} tfCntrName=${{ env.CNTR_TF_NAME }} environmentTag=${{ env.ENVIRONMENT_TAG }} 
+
+    - uses: cschleiden/replace-tokens@v1.2
+      with:
+        tokenPrefix: '__'
+        tokenSuffix: '__'
+        files: '["**/*"]'
+
     # Install the latest version of the Terraform CLI
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -40,7 +58,7 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend-config=tfbackend.conf
 
     # Checks that all Terraform configuration files adhere to a canonical format
     # Will fail the build if not
