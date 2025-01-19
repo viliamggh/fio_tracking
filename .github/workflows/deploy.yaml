@@ -85,12 +85,11 @@ jobs:
     #   run: terraform apply -auto-approve
     
     - name: Go mod init
-      working-directory: HttpExample
       run: go mod init example.com
 
     - name: Build AzFunc
-      working-directory: HttpExample
-      run: GOOS=linux GOARCH=amd64 go build handler.go
+      # working-directory: HttpExample
+      run: GOOS=linux GOARCH=amd64 go build HttpExample/handler.go
 
     - name: 'Deploy to Azure'
       uses: Azure/functions-action@v1
