@@ -84,8 +84,8 @@ jobs:
     #   working-directory: terraform
     #   run: terraform apply -auto-approve
     
-    - name: Go mod init
-      run: go mod init example.com
+    # - name: Go mod init
+    #   run: go mod init example.com
 
     - name: Build AzFunc
       # working-directory: HttpExample
@@ -94,7 +94,7 @@ jobs:
     - name: 'Deploy to Azure'
       uses: Azure/functions-action@v1
       with:
-        app-name: SomeStupidName
+        app-name: HttpExample
 
     # - name: Publish app
     #   working-directory: HttpExample
