@@ -89,7 +89,7 @@ jobs:
 
     - name: Build AzFunc
       # working-directory: HttpExample
-      run: GOOS=linux GOARCH=amd64 go build HttpExample/handler.go
+      run: GOOS=linux GOARCH=amd64 go build handler.go
 
     - name: 'Deploy to Azure'
       uses: Azure/functions-action@v1
