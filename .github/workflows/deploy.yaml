@@ -85,11 +85,14 @@ jobs:
       run: terraform apply -auto-approve
     
     - name: Go mod init
-      run: go mod init fintrack.com
+      working-directory: HttpExample
+      run: go mod init example.com
 
     - name: Build AzFunc
+      working-directory: HttpExample
       run: GOOS=linux GOARCH=amd64 go build handler.go
 
     - name: Publish app
+      working-directory: HttpExample
       run: func azure functionapp publish "SomeStupidName"
     

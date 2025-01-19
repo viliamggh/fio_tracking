@@ -42,6 +42,12 @@ resource "azurerm_storage_account" "sa" {
   account_replication_type = "LRS"
 }
 
+resource "azurerm_storage_container" "deploy" {
+  name               = "deployments"
+  storage_account_id = azurerm_storage_account.sa.id
+  # container_access_type = "private"
+}
+
 # Service Plan
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/service_plan
 resource "azurerm_service_plan" "sp" {
@@ -79,12 +85,12 @@ resource "azurerm_linux_function_app" "functions" {
 
     FUNCTION_APP_EDIT_MODE = "readonly"
     # HASH                     = base64encode(filesha256(var.package))
-    # WEBSITE_RUN_FROM_PACKAGE = "https://${azurerm_storage_account.storage.name}.blob.core.windows.net/${azurerm_storage_container.deployments.name}/${azurerm_storage_blob.appcode.name}${data.azurerm_storage_account_sas.sas.sas}"
+    # WEBSITE_RUN_FROM_PACKAGE = "https://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.deploy.name}/${azurerm_storage_blob.appcode.name}${data.azurerm_storage_account_sas.sas.sas}"
 
-    APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.appinsights.instrumentation_key
   }
 
   site_config {
+    application_insights_key = azurerm_application_insights.appinsights.instrumentation_key
     application_stack {
       use_custom_runtime = true
     }
