@@ -95,3 +95,4 @@ jobs:
       uses: Azure/functions-action@v1
       with:
         app-name: funcapp-fintrack-dev
+        
