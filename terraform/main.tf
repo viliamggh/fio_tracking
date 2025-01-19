@@ -71,6 +71,7 @@ resource "azurerm_linux_function_app" "functions" {
 
 
   app_settings = {
+
     # FUNCTIONS_WORKER_RUNTIME = "custom"
     # SPAUTH_SITEURL           = var.sharepoint_siteurl
     # SPAUTH_CLIENTID          = var.sharepoint_clientid
@@ -83,22 +84,26 @@ resource "azurerm_linux_function_app" "functions" {
     APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.appinsights.instrumentation_key
   }
 
-  site_config {}
+  site_config {
+    application_stack {
+      use_custom_runtime = true
+    }
+  }
 
 }
 
-import {
-  to = azurerm_resource_group.rg
-  id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev"
-}
+# import {
+#   to = azurerm_resource_group.rg
+#   id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev"
+# }
 
-import {
-  to = azurerm_key_vault.kv
-  id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev/providers/Microsoft.KeyVault/vaults/kv-fintrack-dev"
-}
+# import {
+#   to = azurerm_key_vault.kv
+#   id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev/providers/Microsoft.KeyVault/vaults/kv-fintrack-dev"
+# }
 
-import {
-  to = azurerm_storage_account.sa
-  id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev/providers/Microsoft.Storage/storageAccounts/safintrackdev"
-}
+# import {
+#   to = azurerm_storage_account.sa
+#   id = "/subscriptions/7a8c32c6-f593-43cd-ab54-99105fd2cc8b/resourceGroups/rg-fintrack-dev/providers/Microsoft.Storage/storageAccounts/safintrackdev"
+# }
 
