@@ -78,7 +78,7 @@ resource "azurerm_linux_function_app" "functions" {
 
   app_settings = {
 
-    # FUNCTIONS_WORKER_RUNTIME = "custom"
+    FUNCTIONS_WORKER_RUNTIME = "custom"
     # SPAUTH_SITEURL           = var.sharepoint_siteurl
     # SPAUTH_CLIENTID          = var.sharepoint_clientid
     # SPAUTH_CLIENTSECRET      = var.sharepoint_clientsecret
