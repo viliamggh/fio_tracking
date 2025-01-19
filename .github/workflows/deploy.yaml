@@ -43,12 +43,12 @@ jobs:
       with:
         creds: '{"clientId":"${{ env.ARM_CLIENT_ID }}","clientSecret":"${{ env.ARM_CLIENT_SECRET }}","subscriptionId":"${{ env.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.ARM_TENANT_ID }}"}'
 
-    - uses: azure/arm-deploy@v1
-      with:
-        scope: subscription
-        region: ${{ env.REGION }}
-        template: main.bicep
-        parameters: tfRgName=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }} tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }} tfCntrName=${{ env.CNTR_TF_NAME }} region=${{ env.REGION }} 
+    # - uses: azure/arm-deploy@v1
+    #   with:
+    #     scope: subscription
+    #     region: ${{ env.REGION }}
+    #     template: main.bicep
+    #     parameters: tfRgName=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }} tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }} tfCntrName=${{ env.CNTR_TF_NAME }} region=${{ env.REGION }} 
 
     - run: |
         echo "RG_TF_NAME=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
@@ -73,11 +73,11 @@ jobs:
       working-directory: terraform
       run: terraform init -backend-config=tfbackend.conf
 
-    # # Checks that all Terraform configuration files adhere to a canonical format
-    # # Will fail the build if not
-    # - name: Terraform Format
-    #   working-directory: terraform
-    #   run: terraform fmt -check
+    # Checks that all Terraform configuration files adhere to a canonical format
+    # Will fail the build if not
+    - name: Terraform Format
+      working-directory: terraform
+      run: terraform fmt -check
 
     # Terraform Apply
     - name: Terraform Apply
