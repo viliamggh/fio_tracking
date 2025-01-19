@@ -91,9 +91,9 @@ resource "azurerm_linux_function_app" "functions" {
 
   site_config {
     application_insights_key = azurerm_application_insights.appinsights.instrumentation_key
-    application_stack {
-      use_custom_runtime = true
-    }
+    # application_stack {
+    #   use_custom_runtime = true
+    # }
   }
 }
 
