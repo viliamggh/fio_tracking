@@ -43,35 +43,35 @@ jobs:
       with:
         creds: '{"clientId":"${{ env.ARM_CLIENT_ID }}","clientSecret":"${{ env.ARM_CLIENT_SECRET }}","subscriptionId":"${{ env.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.ARM_TENANT_ID }}"}'
 
-    # - uses: azure/arm-deploy@v1
-    #   with:
-    #     scope: subscription
-    #     region: ${{ env.REGION }}
-    #     template: main.bicep
-    #     parameters: tfRgName=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }} tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }} tfCntrName=${{ env.CNTR_TF_NAME }} region=${{ env.REGION }} 
+    - uses: azure/arm-deploy@v1
+      with:
+        scope: subscription
+        region: ${{ env.REGION }}
+        template: main.bicep
+        parameters: tfRgName=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }} tfSaName=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }} tfCntrName=${{ env.CNTR_TF_NAME }} region=${{ env.REGION }} 
 
-    # - run: |
-    #     echo "RG_TF_NAME=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
-    #     echo "ST_TF_NAME=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
+    - run: |
+        echo "RG_TF_NAME=${{ env.RG_TF_PREFIX }}-${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
+        echo "ST_TF_NAME=${{ env.ST_TF_PREFIX }}${{ env.ENVIRONMENT_TAG }}" >> $GITHUB_ENV
 
-    # - uses: cschleiden/replace-tokens@v1.2
-    #   with:
-    #     tokenPrefix: '__'
-    #     tokenSuffix: '__'
-    #     files: '["**/*"]'
+    - uses: cschleiden/replace-tokens@v1.2
+      with:
+        tokenPrefix: '__'
+        tokenSuffix: '__'
+        files: '["**/*"]'
 
-    # - run: cat terraform/tfbackend.conf
+    - run: cat terraform/tfbackend.conf
 
-    # # Install the latest version of the Terraform CLI
-    # - name: Setup Terraform
-    #   uses: hashicorp/setup-terraform@v3
-    #   with:
-    #     terraform_wrapper: false
+    # Install the latest version of the Terraform CLI
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_wrapper: false
 
-    # # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    # - name: Terraform Init
-    #   working-directory: terraform
-    #   run: terraform init -backend-config=tfbackend.conf
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      working-directory: terraform
+      run: terraform init -backend-config=tfbackend.conf
 
     # # Checks that all Terraform configuration files adhere to a canonical format
     # # Will fail the build if not
@@ -79,10 +79,10 @@ jobs:
     #   working-directory: terraform
     #   run: terraform fmt -check
 
-    # # Terraform Apply
-    # - name: Terraform Apply
-    #   working-directory: terraform
-    #   run: terraform apply -auto-approve
+    # Terraform Apply
+    - name: Terraform Apply
+      working-directory: terraform
+      run: terraform apply -auto-approve
     
     # - name: Go mod init
     #   run: go mod init example.com
@@ -95,8 +95,3 @@ jobs:
       uses: Azure/functions-action@v1
       with:
         app-name: funcapp-fintrack-dev
-
-    # - name: Publish app
-    #   working-directory: HttpExample
-    #   run: func azure functionapp publish "SomeStupidName"
-    
