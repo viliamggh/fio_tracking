@@ -83,7 +83,7 @@ resource "azurerm_linux_function_app" "functions" {
     # SPAUTH_CLIENTID          = var.sharepoint_clientid
     # SPAUTH_CLIENTSECRET      = var.sharepoint_clientsecret
 
-    FUNCTION_APP_EDIT_MODE = "readonly"
+    # FUNCTION_APP_EDIT_MODE = "readonly"
     # HASH                     = base64encode(filesha256(var.package))
     # WEBSITE_RUN_FROM_PACKAGE = "https://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.deploy.name}/${azurerm_storage_blob.appcode.name}${data.azurerm_storage_account_sas.sas.sas}"
 
