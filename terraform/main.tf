@@ -89,7 +89,6 @@ resource "azurerm_linux_function_app" "functions" {
       use_custom_runtime = true
     }
   }
-
 }
 
 # import {

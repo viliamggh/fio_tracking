@@ -84,3 +84,9 @@ jobs:
       working-directory: terraform
       run: terraform apply -auto-approve
     
+    - name: Build AzFunc
+      run: GOOS=linux GOARCH=amd64 go build handler.go
+
+    - name: Publish app
+      run: func azure functionapp publish "SomeStupidName"
+    
